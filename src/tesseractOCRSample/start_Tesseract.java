@@ -9,12 +9,14 @@ import net.sourceforge.tess4j.TesseractException;
 
 public class start_Tesseract {
 	public static void main(String[] args) throws IOException {
-		File imageFile = new File("img/test2.PNG");
+		/* File imageFile = new File("img/kor_number.png"); */
+		 File imageFile = new File("resultImg/text5.jpg"); 
 		ITesseract instance = new Tesseract();
 		instance.setDatapath("C:\\finalproject\\OpenCV&TesseractOCR");
 		instance.setLanguage("kor");
 		try {
 			String result = instance.doOCR(imageFile);
+			System.out.println("=========°á°ú==========");
 			System.out.println(result);
 		} catch (TesseractException e) {
 			e.printStackTrace();

@@ -1,13 +1,17 @@
 package openCV;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 //
 public class TotalTest1 {
-	static String InPath = "img/img3.PNG";
+	static String InPath = "img/text5.jpg";
 	static {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 	}
@@ -23,13 +27,15 @@ public class TotalTest1 {
 		Imgproc.threshold(gray, binary, 127, 255, Imgproc.THRESH_BINARY_INV);
 		
 		// Canny Edge
-		Mat CannyEdge = new Mat();
-		Imgproc.Canny(gray, CannyEdge, 10, 100, 3, true);
+		/*
+		 * Mat CannyEdge = new Mat(); Imgproc.Canny(gray, CannyEdge, 10, 100, 3, true);
+		 */
 		
 		// List<MatOfPoint> 생성
-		// List<MatOfPoint> contours = new ArrayList<>();
+		List<MatOfPoint> contours = new ArrayList<>();
 		
 		// 관심 영역 추출 
+		
 		/*
 		 * Mat hierarchy = new Mat(); Imgproc.findContours(CannyEdge, contours,
 		 * hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
@@ -44,6 +50,7 @@ public class TotalTest1 {
 		 * contours_dict.append({ 'contour': contour, 'x': x, 'y': y, 'w': w, 'h': h,
 		 * 'cx': x + (w / 2), 'cy': y + (h / 2) })
 		 */
+		 
 		/*
 		 * Mat hierarchy = new Mat(); Imgproc.findContours(CannyEdge, contours,
 		 * hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE); for(int idx =
@@ -62,7 +69,9 @@ public class TotalTest1 {
 		 */
 		
 		// 다른이름으로 저장
-		Imgcodecs.imwrite(OutPath, CannyEdge);
+		Imgcodecs.imwrite("resultImg/test1Gray.jpg", gray);
+		Imgcodecs.imwrite("resultImg/text5.jpg", binary);
+		/* Imgcodecs.imwrite("resultImg/test1Canny.jpg", CannyEdge); */
 	}
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
