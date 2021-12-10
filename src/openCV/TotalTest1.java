@@ -105,10 +105,9 @@ public class TotalTest1 {
 			MatOfPoint matOfPoint = contours.get(idx);
 			Rect rect = Imgproc.boundingRect(matOfPoint);
 			// Imgproc.drawContours(inputMat, contours, idx, new Scalar(0, 255, 0));
+			// (rect.width<7): 제일 작은 가로 8, (rect.height < 35): 제일 작은 세로 36, (rect.x < 108): x 최소값 118, (rect.x < 108): x 최대값 282
+			if (rect.width < 7 || rect.height < 35 || rect.width > 25 || rect.x < 108 || rect.x > 318) continue;
 			Imgproc.rectangle(inputMat, rect, new Scalar(0, 255, 0));
-
-			if (rect.width < 5 || rect.height < 35 || rect.width > 25 || rect.x < 108 || rect.x > 318)
-				continue;
 			System.out.println(rect.toString());
 			// point 1
 			if (x1 > rect.x || y1 > rect.y) {
@@ -121,6 +120,7 @@ public class TotalTest1 {
 				y2 = rect.y + rect.height;
 			}
 		}
+		ShowImage("rectangle", inputMat);
 		System.out.println("x1:" + x1 + " y1:" + y1);
 		System.out.println("x2:" + x2 + " y2:" + y2);
 		int padding = 10;
@@ -134,7 +134,7 @@ public class TotalTest1 {
 		int height = resultMat.height();
 		int newW = (x2+padding)-(x1-padding);
 		int newh = (y1-padding)-(y2-padding);
-		rotate = Imgproc.getRotationMatrix2D(new Point(width/2,height/2), 15, 1);
+		rotate = Imgproc.getRotationMatrix2D(new Point(width/2,height/2), 14, 1);
 		Imgproc.warpAffine(resultMat, resultMat, rotate, new Size(newW,newh), Imgproc.INTER_AREA);
 		Imgproc.GaussianBlur(resultMat, resultMat, new Size(5, 5), 0);
 		Imgproc.threshold(resultMat, resultMat, 127, 255, Imgproc.THRESH_BINARY);
