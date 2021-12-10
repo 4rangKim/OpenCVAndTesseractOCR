@@ -10,7 +10,7 @@ import net.sourceforge.tess4j.TesseractException;
 public class start_Tesseract {
 	public static void main(String[] args) throws IOException {
 		/* File imageFile = new File("img/kor_number.png"); */
-		 File imageFile = new File("resultImg/text5.jpg"); 
+		File imageFile = new File("resultImg/text7.jpg"); 
 		ITesseract instance = new Tesseract();
 		instance.setDatapath("C:\\finalproject\\OpenCV&TesseractOCR");
 		instance.setLanguage("kor");
